@@ -25,8 +25,8 @@ return {
                 css = { "prettierd" },
                 json = { "prettierd" },
                 markdown = { "prettierd" },
-
                 lua = { "stylua" },
+                rust = { "rustfmt" },
             },
         })
         local cmp = require("cmp")
