@@ -1,4 +1,6 @@
+vim.cmd("colorscheme rose-pine")
 -- For Tree-sitter: Variables in JavaScript
+
 vim.cmd("highlight @variable.javascript ctermfg=LightBlue guifg=#4EC9B0")
 vim.cmd("highlight @lsp.type.variable ctermfg=LightBlue guifg=#ff3c3c")
 vim.cmd("highlight @lsp.type.parameter.javascript  ctermfg=LightBlue guifg=#ffab70")

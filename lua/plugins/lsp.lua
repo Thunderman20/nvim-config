@@ -1,5 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
+	event = "BufReadPre",
 	dependencies = {
 		"stevearc/conform.nvim",
 		"williamboman/mason.nvim",
@@ -13,7 +14,6 @@ return {
 		"saadparwaiz1/cmp_luasnip",
 		"j-hui/fidget.nvim",
 	},
-
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
@@ -35,9 +35,8 @@ return {
 			},
 		})
 		local cmp = require("cmp")
-		require("luasnip.loaders.from_vscode").lazy_load()
-		require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
-
+		require("luasnip.loaders.from_vscode").lazy_load({ lazy = true })
+		require("luasnip.loaders.from_lua").lazy_load({ paths = "~/AppData/Local/nvim/snippets/" })
 		local cmp_lsp = require("cmp_nvim_lsp")
 		local capabilities = vim.tbl_deep_extend(
 			"force",
@@ -45,23 +44,14 @@ return {
 			vim.lsp.protocol.make_client_capabilities(),
 			cmp_lsp.default_capabilities()
 		)
-
 		require("fidget").setup({})
 		require("mason").setup()
 		require("mason-lspconfig").setup({
-			ensure_installed = {
-				"ts_ls",
-				"lua_ls",
-				"html",
-				"cssls",
-			},
+			ensure_installed = { "ts_ls", "lua_ls", "html", "cssls" },
 			handlers = {
-				function(server_name) -- default handler (optional)
-					require("lspconfig")[server_name].setup({
-						capabilities = capabilities,
-					})
+				function(server_name)
+					require("lspconfig")[server_name].setup({ capabilities = capabilities })
 				end,
-
 				zls = function()
 					local lspconfig = require("lspconfig")
 					lspconfig.zls.setup({
@@ -82,7 +72,6 @@ return {
 					lspconfig.lua_ls.setup({
 						capabilities = capabilities,
 						on_attach = function(client, bufnr)
-							-- Ensure the formatter is enabled on save
 							if client.server_capabilities.documentFormattingProvider then
 								vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
 							end
@@ -99,13 +88,11 @@ return {
 				end,
 			},
 		})
-
 		local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
 		cmp.setup({
 			snippet = {
 				expand = function(args)
-					require("luasnip").lsp_expand(args.body) -- For luasnip users.
+					require("luasnip").lsp_expand(args.body)
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
@@ -132,7 +119,6 @@ return {
 				end, { "i", "s" }),
 				["<C-Space>"] = cmp.mapping.complete(),
 			}),
-
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
@@ -141,9 +127,7 @@ return {
 				{ name = "buffer" },
 			}),
 		})
-
 		vim.diagnostic.config({
-			-- update_in_insert = true,
 			float = {
 				focusable = false,
 				style = "minimal",

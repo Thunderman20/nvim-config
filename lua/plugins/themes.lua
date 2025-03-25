@@ -1,30 +1,27 @@
+-- lua/plugins/themes.lua
 return {
-	{ "rose-pine/neovim", name = "rose-pine" },
 	{
-		"folke/tokyonight.nvim",
-		name = "tokyonight",
-	},
-	{
-		"catppuccin/nvim",
-		name = "catppuccin",
+		"rose-pine/neovim",
+		name = "rose-pine",
+		event = "VimEnter", -- Load after startup
+		config = function()
+			require("rose-pine").setup({
+				-- Optional config
+				variant = "main", -- "main", "moon", or "dawn"
+				dark_variant = "main",
+			})
+		end,
 	},
 	{
 		"projekt0n/github-nvim-theme",
 		name = "github-theme",
+		event = "VimEnter",
 		config = function()
 			require("github-theme").setup({
-				specs = {
-					all = {
-						bg1 = "#000000", -- Black background
-						bg0 = "#1d1d2b", -- Alt backgrounds (floats, statusline, ...)
-						bg3 = "#121820", -- 55% darkened from stock
-						sel0 = "#131b24", -- 55% darkened from stock
-					},
-				},
+				-- Optional config
+				options = { transparent = false },
 			})
 		end,
 	},
-	{ "Mofiqul/dracula.nvim", name = "dracula" },
-	{ "ellisonleao/gruvbox.nvim", name = "gruvbox" },
-	{ "navarasu/onedark.nvim", name = "onedark" },
 }
+
