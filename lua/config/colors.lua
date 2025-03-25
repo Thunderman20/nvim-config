@@ -3,6 +3,10 @@ vim.cmd("highlight @variable.javascript ctermfg=LightBlue guifg=#4EC9B0")
 vim.cmd("highlight @lsp.type.variable ctermfg=LightBlue guifg=#ff3c3c")
 vim.cmd("highlight @lsp.type.parameter.javascript  ctermfg=LightBlue guifg=#ffab70")
 vim.cmd("highlight @function.method.call.javascript   ctermfg=LightBlue guifg=#dac3c9")
+vim.cmd("highlight @tag.html ctermfg=LightBlue guifg=#ff0055")
+vim.cmd("highlight @type.tag.css ctermfg=LightBlue guifg=#FFFF00")
+vim.cmd("highlight @property.class.css  ctermfg=LightBlue guifg=#FFFF00")
+vim.cmd("highlight @character.special.css guifg=#85e89d")
 
 vim.cmd("highlight clear @variable.parameter")
 
