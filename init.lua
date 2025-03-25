@@ -1,5 +1,5 @@
 -- require("impatient")
-vim.opt.shadafile = "NONE"  -- Disable ShaDa completely
+vim.opt.shadafile = "NONE" -- Disable ShaDa completely
 vim.g.mapleader = " "
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
