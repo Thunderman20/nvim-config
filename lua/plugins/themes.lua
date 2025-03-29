@@ -12,16 +12,15 @@ return {
 			})
 		end,
 	},
-	{
-		"projekt0n/github-nvim-theme",
-		name = "github-theme",
-		event = "VimEnter",
-		config = function()
-			require("github-theme").setup({
-				-- Optional config
-				options = { transparent = false },
-			})
-		end,
-	},
+	-- {
+	-- 	"projekt0n/github-nvim-theme",
+	-- 	name = "github-theme",
+	-- 	event = "VimEnter",
+	-- 	config = function()
+	-- 		require("github-theme").setup({
+	-- 			-- Optional config
+	-- 			options = { transparent = false },
+	-- 		})
+	-- 	end,
+	-- },
 }
-
