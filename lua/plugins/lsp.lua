@@ -99,6 +99,13 @@ return {
 						},
 					})
 				end,
+				["emmet_language_server"] = function() -- Add this handler
+					local lspconfig = require("lspconfig")
+					lspconfig.emmet_language_server.setup({
+						capabilities = capabilities, -- Attach your capabilities here
+						filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+					})
+				end,
 			},
 		})
 
@@ -157,4 +164,3 @@ return {
 		})
 	end,
 }
-
